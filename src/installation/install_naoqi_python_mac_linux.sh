@@ -10,6 +10,13 @@ export PYTHONPATH=${PYTHONPATH}:$target_path
 export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:$target_path
 
 
+
+
+
+
+
+# these following steps are only for mac
+if [ "$(uname)" == "Darwin" ]; then
 all_libs="$target_path/*.dylib $target_path/*.so"
 boost_libs=$target_path/libboost*.dylib
 for lib in $all_libs; do
@@ -19,5 +26,7 @@ for lib in $all_libs; do
     install_name_tool -change $(basename $boost_lib) $boost_lib $lib
   done
 done
+fi
+
 
 echo -e "all finished please check install with import qi and import naoqi"
