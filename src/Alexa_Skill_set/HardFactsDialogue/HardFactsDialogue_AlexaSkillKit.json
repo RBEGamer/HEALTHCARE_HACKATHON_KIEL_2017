@@ -1,0 +1,377 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "dieBegruessung",
+      "samples": [
+        "neuer Patient",
+        "erstelle Patient {Vorname} {Nachname}",
+        "nach der Patientenerstellung",
+        "nach dem Erstellungsformular für Patienten",
+        "nach einem neuen Patienten",
+        "erstelle neuen Patienten"
+      ],
+      "slots": [
+        {
+          "name": "Nachname",
+          "type": "lastName",
+          "samples": [
+            "{Nachname}"
+          ]
+        },
+        {
+          "name": "Geburtsdatum",
+          "type": "AMAZON.DATE",
+          "samples": [
+            "{Geburtsdatum}"
+          ]
+        },
+        {
+          "name": "Herzschrittmacher",
+          "type": "Bool",
+          "samples": [
+            "{Herzschrittmacher}"
+          ]
+        },
+        {
+          "name": "Blutverduenner",
+          "type": "Bool",
+          "samples": [
+            "{Blutverduenner}"
+          ]
+        },
+        {
+          "name": "Allergien",
+          "type": "Allergien",
+          "samples": [
+            "{Allergien}"
+          ]
+        },
+        {
+          "name": "Vorname",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": [
+            "{Vorname}"
+          ]
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "Allergien",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "Nüsse",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Penicilin",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Laktose",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Gluten",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Kortison",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Keine",
+            "synonyms": [
+              "Ich besitze keine",
+              "Ich habe keine",
+              "Nein"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Obst",
+            "synonyms": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bool",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "ja",
+            "synonyms": [
+              "Habe ich",
+              "Leider ja",
+              "Besitze ich"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "nein",
+            "synonyms": [
+              "Habe ich nicht",
+              "Besitze ich nicht",
+              "Zum Glück nicht"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "lastName",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "Hammerbacher",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Ochsendorf",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Kiese",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Sandermann",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Müller",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Töberg",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Fischer",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Meier",
+            "synonyms": [
+              "Maier",
+              "Meyer"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Glase",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Abraham",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Zimmermann",
+            "synonyms": []
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Nachname",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Bitte geben Sie Ihren Nachnamen ein"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Geburtsdatum",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Bitte geben Sie Ihr Geburtsdatum ein"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Herzschrittmacher",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Haben Sie einen Herzschrittmacher"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Blutverduenner",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Nehmen Sie Blutverdünner"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Allergien",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Haben Sie Allergien?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-dieBegruessung.IntentSlot-Vorname",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Bitte geben Sie Ihren Vornamen ein"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "dieBegruessung",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Nachname",
+            "type": "lastName",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Nachname"
+            }
+          },
+          {
+            "name": "Geburtsdatum",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Geburtsdatum"
+            }
+          },
+          {
+            "name": "Herzschrittmacher",
+            "type": "Bool",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Herzschrittmacher"
+            }
+          },
+          {
+            "name": "Blutverduenner",
+            "type": "Bool",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Blutverduenner"
+            }
+          },
+          {
+            "name": "Allergien",
+            "type": "Allergien",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Allergien"
+            }
+          },
+          {
+            "name": "Vorname",
+            "type": "AMAZON.DE_FIRST_NAME",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-dieBegruessung.IntentSlot-Vorname"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

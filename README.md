@@ -1,20 +1,40 @@
-# HEALTHCARE_HACKATHON_KIEL_2017
-The repo for the service rooter challenge using the nano robot
+HealthhackKiel > [home](https://git.ng.bluemix.net/bluehc/Healthcare-Hackathon-Kiel2017/wikis/home)
+
+# Die Pflege-Assistenz-Roboter-Challenge
 
 
+## Unser Team möchte
+
+einen Assistenz-Roboter im Maßstab 1 zu 4 programmieren. 
+Dieser soll typische Unterstützungsabläufe demonstrieren können, die beim Heben bzw. Betten und Pflegen der Menschen so helfen können, 
+dass die Pflegekraft entlastet wird. Ziel ist es, eine grundsätzliche Machbarkeit und beste Anwendungsszenarios zu zeigen und einige oder einen davon „echt“ im Maßstab 1 zu 4 vorzuführen.
+
+## Technologie
+
+* HCS
+* Nao
+
+## Bestehende Teammitglieder
+
+* Pflegekraft vom UKSH
+* HCS Coach /IBM Coach 
+* Alexander Kleehaus (EY Zürich)
+* FH Student Lübeck Luca le Coutre
 
 
-# THE CHALLANGE
+## Gesucht werden
 
+* Entwickler
 
+## Kontaktperson
 
-# USED HARDWARE
+a.wulff@kabelmail.de
 
+## Interesse?
 
+* Click den *Request Access* Button und melde dich bitte bei der Kontaktperson
 
+## Kein Interesse?
 
+Zurück zum [HealthhackKiel wiki](https://git.ng.bluemix.net/bluehc/Healthcare-Hackathon-Kiel2017/wikis/home)
 
-
-# USED SOFTWARE
-* https://github.com/chenxiaoqino/udp-image-streaming/ (OPENCV MAT STREAMING)
-* https://github.com/prouast/heartbeat (HEARBEAT ALGOYTHMUS)

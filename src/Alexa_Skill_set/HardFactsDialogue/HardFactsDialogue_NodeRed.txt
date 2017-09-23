@@ -1,0 +1,720 @@
+[
+    {
+        "id": "ae1c0a86.e2b8d8",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "8187ba5f.c64f48",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [],
+        "out": []
+    },
+    {
+        "id": "bbea63da.d2d75",
+        "type": "http in",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Http Input von Alexa",
+        "url": "/hardfact",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 110,
+        "wires": [
+            [
+                "e0967062.d4a4c8"
+            ]
+        ]
+    },
+    {
+        "id": "e0967062.d4a4c8",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "sort by request type",
+        "property": "payload.request.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "LaunchRequest",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "IntentRequest",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "SessionEndedRequest",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 4,
+        "x": 325,
+        "y": 110,
+        "wires": [
+            [
+                "13d39d9b.225e0a"
+            ],
+            [
+                "1dd3e68b.4509b9"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1dd3e68b.4509b9",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Sort by Intent",
+        "property": "payload.request.intent.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "dieBegruessung",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "HelpIntent",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 550,
+        "y": 130,
+        "wires": [
+            [
+                "94b6111.63533f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fe7aee77.abd178",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Format response",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"version\": \"1.0\" ,\n    \"response\": {\n        \"outputSpeech\": {\n            \"type\": \"PlainText\" ,\n            \"text\": \"{{payload}}\"\n        },\n        \"shouldEndSession\": true\n    }\n}",
+        "output": "str",
+        "x": 1586,
+        "y": 58,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "beb0ccea.779438",
+        "type": "json",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "",
+        "pretty": true,
+        "x": 2225,
+        "y": 55,
+        "wires": [
+            [
+                "6b5c5b4b.3f9bb4"
+            ]
+        ]
+    },
+    {
+        "id": "6b5c5b4b.3f9bb4",
+        "type": "http response",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2395,
+        "y": 55,
+        "wires": []
+    },
+    {
+        "id": "13d39d9b.225e0a",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Vorstellung",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Guten Tag ich bin Alexa und werde ihre Patientendaten jetzt aufnehmen: Zum Start sagen Sie bitte: Frag die Begrüßung nach einem neuen Patienten",
+        "output": "str",
+        "x": 545,
+        "y": 60,
+        "wires": [
+            [
+                "2a802836.97c098"
+            ]
+        ]
+    },
+    {
+        "id": "dbee46c4.d7a8b8",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Nachname",
+        "property": "msg.payload.request.intent.slots.Nachname.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            [
+                "13b30717.30f309"
+            ],
+            [
+                "e30bbfd1.77af1"
+            ]
+        ]
+    },
+    {
+        "id": "146bd6ee.ea2549",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Blutverduenner",
+        "property": "msg.payload.request.intent.slots.Blutverduenner.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1055,
+        "y": 430,
+        "wires": [
+            [
+                "a32ea496.38f818"
+            ],
+            [
+                "3aab4afe.268df6"
+            ]
+        ]
+    },
+    {
+        "id": "e66b7d61.db9b98",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Vorname",
+        "property": "msg.payload.request.intent.slots.Vorname.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1040,
+        "y": 235,
+        "wires": [
+            [
+                "5e966a22.d2cf2c"
+            ],
+            [
+                "f3e81b9d.0d2508"
+            ]
+        ]
+    },
+    {
+        "id": "49bec6db.2410f8",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Geburtsdatum",
+        "property": "msg.payload.request.intent.slots.Geburtsdatum.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1060,
+        "y": 285,
+        "wires": [
+            [
+                "e3c542bf.6033c"
+            ],
+            [
+                "3787e248.b98d36"
+            ]
+        ]
+    },
+    {
+        "id": "fb75def.2c74d2",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Allergien",
+        "property": "msg.payload.request.intent.slots.Allergien.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1040,
+        "y": 330,
+        "wires": [
+            [
+                "3dc51d82.c77a9a"
+            ],
+            [
+                "d5626784.6fb0d8"
+            ]
+        ]
+    },
+    {
+        "id": "37f6442c.14cec4",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Existance of value Herzschrittmacher",
+        "property": "msg.payload.request.intent.slots.Herzschrittmacher.value",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1065,
+        "y": 380,
+        "wires": [
+            [
+                "32757959.d186fe"
+            ],
+            [
+                "51c09203.4b579c"
+            ]
+        ]
+    },
+    {
+        "id": "13b30717.30f309",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Nachname",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Wie lautet ihr Nachname\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Nachname\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1360,
+        "y": 175,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "5e966a22.d2cf2c",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Vorname",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Wie lautet ihr Vorname\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Vorname\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n              \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1350,
+        "y": 230,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "a32ea496.38f818",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Blutverduenner",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Verwenden sie Blutverduenner\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Blutverduenner\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n                \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1380,
+        "y": 425,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "32757959.d186fe",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Herzschrittmacher",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Besitzen sie einen Herzschrittmacher\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Herzschrittmacher\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n                \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1380,
+        "y": 375,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "e3c542bf.6033c",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Geburtsdatum",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Wie lautet ihr Geburtsdatum?\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Geburtsdatum\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n              \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1370,
+        "y": 280,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "3dc51d82.c77a9a",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Rückfrage Alexa Allergien",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"Wie lauten ihre Allergien\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ElicitSlot\",\n        \"slotToElicit\": \"Allergien\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n                \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"value\":\"FEHLER\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1350,
+        "y": 325,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "bead805.5bbb68",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Confirmation-Nachfrage",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"sessionAttributes\": {},\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"PlainText\",\n      \"text\": \"{{payload}}\"\n    },\n    \"shouldEndSession\": false,\n    \"directives\": [\n      {\n        \"type\": \"Dialog.ConfirmIntent\",\n        \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n                \"value\": \"FEHLER\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"value\":\"20170922\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"value\":\"ja\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"value\":\"nein\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"value\":\"keine\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"value\":\"Tom\",\n              \"confirmationStatus\": \"CONFIRMED\"\n            }\n          }\n        }\n      }\n    ]\n  }\n}",
+        "output": "str",
+        "x": 1350,
+        "y": 475,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "130a703d.f6d64",
+        "type": "http request",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "DB Connection",
+        "method": "POST",
+        "ret": "txt",
+        "url": "http://52.29.117.173/register_patient.php",
+        "tls": "",
+        "x": 2020,
+        "y": 310,
+        "wires": [
+            [
+                "828e7e6c.4e0b98"
+            ]
+        ],
+        "inputLabels": [
+            "test"
+        ]
+    },
+    {
+        "id": "e30bbfd1.77af1",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Nachname",
+        "func": "if(global.get(\"Nachname_Original\") === false) {\n    global.set(\"Nachname\", msg.payload.request.intent.slots.Nachname.value);\n    global.set(\"Nachname_Original\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 235,
+        "wires": [
+            [
+                "e66b7d61.db9b98"
+            ]
+        ]
+    },
+    {
+        "id": "f3e81b9d.0d2508",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Vorname",
+        "func": "if(global.get(\"Vorname_Original\") === false) {\n    global.set(\"Vorname\",msg.payload.request.intent.slots.Vorname.value);\n    global.set(\"Vorname_Original\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 285,
+        "wires": [
+            [
+                "49bec6db.2410f8"
+            ]
+        ]
+    },
+    {
+        "id": "3787e248.b98d36",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Geburtsdatum",
+        "func": "if(global.get(\"Geburtsdatum_Original\") === false) {\n    global.set(\"Geburtsdatum\",msg.payload.request.intent.slots.Geburtsdatum.value);\n    global.set(\"Geburtsdatum_Original\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 740,
+        "y": 330,
+        "wires": [
+            [
+                "fb75def.2c74d2"
+            ]
+        ]
+    },
+    {
+        "id": "d5626784.6fb0d8",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Allergien",
+        "func": "if(global.get(\"Allergien_Original\") === false) {\n    global.set(\"Allergien\",msg.payload.request.intent.slots.Allergien.value);\n    global.set(\"Allergien_Original\", true);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 720,
+        "y": 380,
+        "wires": [
+            [
+                "37f6442c.14cec4"
+            ]
+        ]
+    },
+    {
+        "id": "51c09203.4b579c",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Herzschrittmacher",
+        "func": "if(global.get(\"Herzschrittmacher_Original\") === false) {\n    global.set(\"Herzschrittmacher\",msg.payload.request.intent.slots.Herzschrittmacher.value);\n    global.set(\"Herzschrittmacher_Original\", true);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 430,
+        "wires": [
+            [
+                "146bd6ee.ea2549"
+            ]
+        ]
+    },
+    {
+        "id": "3aab4afe.268df6",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Merker Blutverduenner",
+        "func": "if(global.get(\"Blutverduenner_Original\") === false) {\n    global.set(\"Blutverduenner\",msg.payload.request.intent.slots.Blutverduenner.value);\n    global.set(\"Blutverduenner_Original\", true);\n}\n\nvar strPayload = \"Sie heißen \" + global.get(\"Vorname\") + \" \" + global.get(\"Nachname\") + \": \";\nstrPayload += \"Sie sind am \" + global.get(\"Geburtsdatum\") + \" geboren: Sie haben einen Herzschrittmacher: \" + global.get(\"Herzschrittmacher\") + \":: \";\nstrPayload += \"Sie nehmen Blutverduenner: \" + global.get(\"Blutverduenner\") + \":: Sie haben Allergien: \" + global.get(\"Allergien\") + \":: Ist das korrekt?\";\n\nmsg.payload = strPayload;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            [
+                "bead805.5bbb68"
+            ]
+        ]
+    },
+    {
+        "id": "2a802836.97c098",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Global zurücksetzen",
+        "func": "global.set(\"Nachname_Original\", false);\nglobal.set(\"Vorname_Original\", false);\nglobal.set(\"Geburtsdatum_Original\", false);\nglobal.set(\"Allergien_Original\", false);\nglobal.set(\"Herzschrittmacher_Original\", false);\nglobal.set(\"Blutverduenner_Original\", false);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 61,
+        "wires": [
+            [
+                "fe7aee77.abd178"
+            ]
+        ]
+    },
+    {
+        "id": "94b6111.63533f",
+        "type": "switch",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Sort by Confirmation",
+        "property": "payload.request.intent.confirmationStatus",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CONFIRMED",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "DENIED",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "NONE",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 3,
+        "x": 787,
+        "y": 121,
+        "wires": [
+            [
+                "80f2a11d.eff2e",
+                "31b15c11.2ac87c"
+            ],
+            [
+                "67e1cd6a.b5ae74"
+            ],
+            [
+                "dbee46c4.d7a8b8"
+            ]
+        ]
+    },
+    {
+        "id": "80f2a11d.eff2e",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Abschluss",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Vielen Dank für Ihre Eingabe und gute Besserung",
+        "output": "str",
+        "x": 1170,
+        "y": 85,
+        "wires": [
+            [
+                "fe7aee77.abd178"
+            ]
+        ]
+    },
+    {
+        "id": "67e1cd6a.b5ae74",
+        "type": "template",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Intent zurücksetzen",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"version\": \"1.0\" ,\n    \"response\": {\n        \"outputSpeech\": {\n            \"type\": \"PlainText\" ,\n            \"text\": \"Bitte die Befragung neustarten\"\n        },\n        \"shouldEndSession\": true\n    },\n    \"updatedIntent\": {\n          \"name\": \"dieBegruessung\",\n          \"confirmationStatus\": \"NONE\",\n          \"slots\": {\n            \"Nachname\": {\n              \"name\": \"Nachname\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Geburtsdatum\": {\n              \"name\": \"Geburtsdatum\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Herzschrittmacher\": {\n              \"name\": \"Herzschrittmacher\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Blutverduenner\": {\n              \"name\": \"Blutverduenner\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Allergien\": {\n              \"name\": \"Allergien\",\n              \"confirmationStatus\": \"NONE\"\n            },\n            \"Vorname\": {\n              \"name\": \"Vorname\",\n              \"confirmationStatus\": \"NONE\"\n            }\n          }\n    }\n}",
+        "output": "str",
+        "x": 1189,
+        "y": 124,
+        "wires": [
+            [
+                "beb0ccea.779438"
+            ]
+        ]
+    },
+    {
+        "id": "31b15c11.2ac87c",
+        "type": "function",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Daten für DB",
+        "func": "msg.payload = { \"Nachname\": global.get(\"Nachname\"),\n                \"Vorname\": global.get(\"Vorname\"), \n                \"Geburtsdatum\": global.get(\"Geburtsdatum\"), \n                \"Allergien\": global.get(\"Allergien\"), \n                \"Herzschrittmacher\": global.get(\"Herzschrittmacher\"), \n                \"Blutverduenner\": global.get(\"Blutverduenner\") };\nmsg.headers = {\"content-type\": \"application/x-www-form-urlencoded\",\n                \"my-custom-header\": \"Hard Facts Input\" };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1830,
+        "y": 310,
+        "wires": [
+            [
+                "130a703d.f6d64",
+                "53900e36.6017d"
+            ]
+        ]
+    },
+    {
+        "id": "53900e36.6017d",
+        "type": "debug",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Vorbereitung HTTP Req",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 2235,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "828e7e6c.4e0b98",
+        "type": "debug",
+        "z": "ae1c0a86.e2b8d8",
+        "name": "Return-Wert der DB",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 2225,
+        "y": 310,
+        "wires": []
+    }
+]

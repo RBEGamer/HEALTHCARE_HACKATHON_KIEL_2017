@@ -1,0 +1,41 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "BlutdruckUndPuls",
+      "samples": [
+        "fuege Blutdruck {Systole} zu {Diastole} und Puls {Puls} ein. Patientin geht es gut. Keine Schmerzen.",
+        "fuege Blutdruck {Systole} zu {Diastole} und Puls {Puls} ein",
+        "fuege Blutdruck {Systole} zu {Diastole} und Puls {Puls} ein. Patientin ist stabil und wohlauf. Keine Schmerzen."
+      ],
+      "slots": [
+        {
+          "name": "Systole",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        },
+        {
+          "name": "Diastole",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        },
+        {
+          "name": "Puls",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        }
+      ]
+    }
+  ]
+}
