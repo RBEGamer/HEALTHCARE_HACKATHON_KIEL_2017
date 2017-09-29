@@ -1,23 +1,28 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 include 'db.php';
 
 
 //delete old times
-$rew = mysql_query("UPDATE `termine` SET `old`='1' WHERE `timestamp` < TIMESTAMPADD(DAY,-1,NOW());");
+$rew = mysqli_query($mysqli,"UPDATE `termine` SET `old`='1' WHERE `timestamp` < TIMESTAMPADD(DAY,-1,NOW());");
 
 $pid = 1; //default patient
 if(isset($_GET['pid'])) {
     $pid = $_GET['pid'];
 }
-  $fetchinfo_dev = mysql_query("SELECT * FROM `termine` WHERE pid='".$pid."' AND `old`='0' Limit 3");
+
+  $fetchinfo_dev = mysqli_query($mysqli,"SELECT * FROM `termine` WHERE pid='".$pid."' AND `old`='0' Limit 3");
   $result = "";
   $c = 0;
 
-  $max =  mysql_num_rows ( $fetchinfo_dev );
+  $max =  mysqli_num_rows ( $fetchinfo_dev );
 
-  while($row_dev = mysql_fetch_array($fetchinfo_dev)) {
-    $time =split(' ',$row_dev['timestamp']);
-    $sp_time = split(':',$time[1]);
+  while($row_dev = mysqli_fetch_array($fetchinfo_dev)) {
+    $time =explode(' ',$row_dev['timestamp']);
+    $sp_time = explode(':',$time[1]);
     $cm_time = $sp_time[0] .":" .$sp_time[1];
 if($c < $max-1){
      $result = $result.  $row_dev['activity'] ."_" .$time[0] ."_" .$cm_time ."_" .$row_dev['location'] ."_,";
@@ -31,11 +36,5 @@ if($c < $max-1){
  $result = str_replace('ö', 'oe', $result);
 
 echo $result;
-//if($c == 1){
-//  echo "Du hast heute einen Termin : " .$result;
-//}else if($c <= 0){/
-//    echo "Du hast heute keine Termine, hurra!!!111Elf";
-//}else{
-//    echo "Du hast heute " .$c ." Termine : " .$result;
-//}
+
   ?>

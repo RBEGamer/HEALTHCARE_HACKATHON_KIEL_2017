@@ -5,6 +5,7 @@
 <script src='canvasjs.min.js'></script>
 
 <script type='text/javascript'>
+
 window.onload=function(){
   var BPM_DATA = new CanvasJS.Chart('BPM_DATA_CONT', {title:{text:'HEARTRATE'},axisX:{interval: 1},data:[{type: 'line',xValueType:'none',dataPoints:[
 
@@ -13,15 +14,15 @@ window.onload=function(){
     include 'db.php';
 
     $pid  = 1;
-   $fetchinfo_dev2 = mysql_query("SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
-   while($row_dev2 = mysql_fetch_array($fetchinfo_dev2)) {
+   $fetchinfo_dev2 = mysqli_query($mysqli,"SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
+   while($row_dev2 = mysqli_fetch_array($fetchinfo_dev2)) {
       $pid = $row_dev2['id'];
       break;
    }
      $c = 1;
      $bla = "";
-    $fetchinfo_dev1 = mysql_query("SELECT * FROM `vital_data` WHERE `pid`='".$pid."' LIMIT 25");
-    while($row_dev1 = mysql_fetch_array($fetchinfo_dev1)) {
+    $fetchinfo_dev1 = mysqli_query($mysqli,"SELECT * FROM `vital_data` WHERE `pid`='".$pid."' LIMIT 25");
+    while($row_dev1 = mysqli_fetch_array($fetchinfo_dev1)) {
        $bla = $bla ."{x:".$c.",y:".$row_dev1['puls']."},";
        $c = $c+ 1;
     }
@@ -43,8 +44,8 @@ window.onload=function(){
   <?php
   include 'db.php';
    $pid  = -1;
-  $fetchinfo_dev1 = mysql_query("SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
-  while($row_dev1 = mysql_fetch_array($fetchinfo_dev1)) {
+  $fetchinfo_dev1 = mysqli_query($mysqli,"SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
+  while($row_dev1 = mysqli_fetch_array($fetchinfo_dev1)) {
     $pid  = $row_dev1['id'];
 
      echo "<tr><td><br></td><td><img src='".$row_dev1['img_path']."' width='60%'></td></tr>";
@@ -80,14 +81,14 @@ if($pid < 0){
 <?php
 include 'db.php';
  $pid  = 1;
-$fetchinfo_dev1 = mysql_query("SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
-while($row_dev1 = mysql_fetch_array($fetchinfo_dev1)) {
+$fetchinfo_dev1 = mysqli_query($mysqli,"SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
+while($row_dev1 = mysqli_fetch_array($fetchinfo_dev1)) {
    $pid = $row_dev1['id'];
    break;
 }
 $res = "";
-$fetchinfo_dev = mysql_query("SELECT * FROM `vital_data` WHERE `pid` = '".$pid ."' LIMIT 25");
-while($row_dev = mysql_fetch_array($fetchinfo_dev)) {
+$fetchinfo_dev = mysqli_query($mysqli,"SELECT * FROM `vital_data` WHERE `pid` = '".$pid ."' LIMIT 25");
+while($row_dev = mysqli_fetch_array($fetchinfo_dev)) {
    $res = $res ."<tr><td>".$row_dev['ts'] ."</td><td>" .$row_dev['systole'] ."</td><td>" .$row_dev['diastole'] ."</td><td>" .$row_dev['puls'] . "</td></tr>";
 }
 echo $res;
