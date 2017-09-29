@@ -1,40 +1,74 @@
 HealthhackKiel > [home](https://git.ng.bluemix.net/bluehc/Healthcare-Hackathon-Kiel2017/wikis/home)
 
-# Die Pflege-Assistenz-Roboter-Challenge
+# I) Patientennotiz - Raum E7
 
+## Teammitglieder
 
-## Unser Team möchte
-
-einen Assistenz-Roboter im Maßstab 1 zu 4 programmieren. 
-Dieser soll typische Unterstützungsabläufe demonstrieren können, die beim Heben bzw. Betten und Pflegen der Menschen so helfen können, 
-dass die Pflegekraft entlastet wird. Ziel ist es, eine grundsätzliche Machbarkeit und beste Anwendungsszenarios zu zeigen und einige oder einen davon „echt“ im Maßstab 1 zu 4 vorzuführen.
-
-## Technologie
-
-* HCS
-* Nao
-
-## Bestehende Teammitglieder
-
-* Pflegekraft vom UKSH
-* HCS Coach /IBM Coach 
+* Andreas Wulff (Pflegekraft UKSH)
 * Alexander Kleehaus (EY Zürich)
-* FH Student Lübeck Luca le Coutre
+* Julia Zimmermann (Philips GmbH)
+* Taher Pham (Arzt und Entrepreneur)
+* Mostafa Akbarzada (IBM Masterstudent)
+* Mario Kiese (Informatik-Student)
+* Jan-Philipp Töberg (Informatik-Student)
+* Marcel Sandermann (Informatik-Student)
+* Marcel Ochsendorf (Informatik-Student)
+* Tom Hammerbacher (Informatik-Student)
 
+## Idee
 
-## Gesucht werden
+Durch den Einsatz von prototypischen sprachgesteuerten Assistenzsystemen wollen wir zeigen, wie Dokumentationsabläufe im Krankenhaus oder in der Pflege effizient organisiert werden können. Damit mehr Zeit für das bleibt, was wirklich zählt:
+* Der Mensch und seine Gesundheit
+* Fachkräfte, die das tun, wofür sie ausgebildet wurden
+* Innovative Ideen im Gesundheitswesen
 
-* Entwickler
+## Ergebnis des Hackathons
 
-## Kontaktperson
+* Implementierung spachgesteuerter Dokumentation der Vitalfunktionen und Untersuchungsergebnisse
+* Zugang der Sprachsoftware für den Arzt über die Identifikationsarmbänder
+* Automatisierte Herstellung von Patienten-Identifikationsarmbändern zur Autorisierung der Sprachsoftware
+* Nutzung einer Pulsdiagnostik über eine Kamera
+* Livevisualisierung der Patientendaten
+* sprachbasierte Patientenunterstützung (Schmerzmittel, Terminabfrage, Essensbestellung, OP Erinnerung etc.)
+* Automatisierter und spachgesteuerter Check-In für Patienten
 
-a.wulff@kabelmail.de
+## Nutzen für den Anwender
 
-## Interesse?
+Arzt: 
+* weniger Verwaltungsaufwand
+* Fokus auf Berufung als Mediziner
 
-* Click den *Request Access* Button und melde dich bitte bei der Kontaktperson
+(Fach-)Personal:
+* weniger Dokumentationsaufwand/ effizientere Dokumentation
+* mehr Zeit für den Patienten
+* Fokus auf pflegerische Tätigkeiten
 
-## Kein Interesse?
+(Krankenhaus-) Management
+* Kosteneinsparung durch (Zeit-)Effizienz
+* Innovative Positionierung
+* Steigerung der Patienten- und Mitarbeiterzufriedenheit
 
-Zurück zum [HealthhackKiel wiki](https://git.ng.bluemix.net/bluehc/Healthcare-Hackathon-Kiel2017/wikis/home)
+## Geschäftspotential
+* Qualitätssteigerung durch Echtzeitdokumentation der digitalen Patientenakte
+* weniger Krankenstand - mehr qualitative Aufgaben und Jobzufriedenheit
+* Mitarbeiterzufriedenheit - weniger Fluktuaktionsrate
+* weniger Wartezeit - zufriedenere Patienten
+* Bei 1% Einsparung der Pflegedokumentationskosten können bis zu EUR 27Mio. gespart werden
+* 
+
+## Wie wird das Preisgeld verwendet?
+Weiterentwicklung der Idee, Anstreben und Finanzieren eines Pilotprojektes zum Beispiel mit dem UKSH 
+Weitere Anwendungsgebiete kontaktloser Pulsdiagnostik für Infektionsfrüherkennungen z.B. im Flughafen
+
+## Präsentation / Video / Live
+* [unsere coole Präsi](http://web.de)
+* [unser Video](http://web.de)
+* [unsere Application](http://abc.eu-de.bluemix.net)
+
+## Technologie (Was steckt in der Lösung)
+* IBM Bluemix (PHP, MYSQL, REDNODE)
+* Amazon Alexa Skill Kit
+* Amazon Aws
+* HCS
+* Brother Badge Drucker
 
