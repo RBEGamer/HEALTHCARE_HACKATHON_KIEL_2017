@@ -1,0 +1,26 @@
+<html>
+<header>
+</header>
+<body>
+</body>
+<h1> Manual Patient Registration</h1>
+<hr><br>
+
+<h2> 1. Schritt - Neuen Patient registrieren</h2>
+<form action="./register_patient.php" method="post">
+<table>
+
+  <tr><td>Vorname</td> <td>&#09;</td> <td><input type="text" name="Vorname" placeholder="Max"></td></tr>
+    <tr><td>Nachname</td> <td>&#09;</td> <td><input type="text" name="Nachname" placeholder="Mustermann"></td></tr>
+    <tr><td>Geburtsdatum (TT.MM.YYYY)</td> <td>&#09;</td> <td><input type="text" name="Geburtsdatum" placeholder="23.05.1956"></td></tr>
+    <tr><td>Blutverd. Medikamente</td> <td>&#09;</td> <td><input type="text" name="Blutverduenner" placeholder="Ja/Nein/Aspirin"></td></tr>
+  <tr><td>Herzschrittmacher</td> <td>&#09;</td> <td><input type="text" name="Herzschrittmacher" placeholder="Ja/Nein"></td></tr>
+<tr><td>Allergien</td> <td>&#09;</td> <td><input type="text" name="Allergien" placeholder="Gluten, Laktose"></td></tr>
+<tr><td>&#09;</td> <td><input type="submit" value="Abschicken"></td> <td>&#09;</td></tr>
+  </table>
+</form>
+
+
+<h2> 2. Schritt - PDF Badge ausdrucken</h2>
+<h3> <a href='./print_pdf_badge.php' >DOWNLOAD BADGE</a> </h3>
+</html>

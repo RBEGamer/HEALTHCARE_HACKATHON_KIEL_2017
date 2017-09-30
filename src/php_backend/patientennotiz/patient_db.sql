@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 30. Sep 2017 um 00:56
+-- Erstellungszeit: 29. Sep 2017 um 04:21
 -- Server-Version: 5.6.35
 -- PHP-Version: 7.1.8
 
@@ -80,8 +80,8 @@ CREATE TABLE `patient_info` (
 --
 
 INSERT INTO `patient_info` (`id`, `station`, `first_name`, `last_name`, `birthday`, `bwm`, `hsm`, `allergene`, `barcodedata`, `creationdate`, `badge_printed`, `shows_on_screen`, `img_path`, `hash_sh1`) VALUES
-(1, 'ICP', 'Marcel', 'O', '11.09.1995', 'Nein', 'Nein', 'gluten', '60bb26f62br0WOo', '2017-09-28 22:22:15', 1, 0, './images/marcelochsendorf1191995.jpeg', '60bb26f62b201debdbbd974194efb0670168ef2d'),
-(2, 'HZR', 'Julia', 'Z', '25.07.1990', 'Ja', 'Nein', 'gluten,laktose', 'a4f37ddc2f4aecd', '2017-09-29 02:07:48', 1, 0, '/images/juliaz258199.jpeg', 'a4f37ddc2f4aecdb7361ab4099e896be94ce997a');
+(1, 'ICP', 'Marcel', 'O', '11.09.1995', 'Nein', 'Nein', 'gluten', '60bb26f62br0WOo', '2017-09-28 22:22:15', 1, 1, './images/marcelochsendorf1191995.jpeg', '60bb26f62b201debdbbd974194efb0670168ef2d'),
+(86, 'HZR', 'Julia', 'Z', '25.07.1990', 'Ja', 'Nein', 'gluten,laktose', 'a4f37ddc2f4aecd', '2017-09-29 02:07:48', 1, -1, '/images/juliaz258199.jpeg', 'a4f37ddc2f4aecdb7361ab4099e896be94ce997a');
 
 -- --------------------------------------------------------
 
@@ -95,17 +95,16 @@ CREATE TABLE `termine` (
   `activity` text NOT NULL,
   `location` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `old` int(11) NOT NULL DEFAULT '0',
-  `reduced_eat` int(11) DEFAULT '0'
+  `old` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `termine`
 --
 
-INSERT INTO `termine` (`id`, `pid`, `activity`, `location`, `timestamp`, `old`, `reduced_eat`) VALUES
-(1, 1, 'Operation', 'OP 1', '2017-09-29 18:44:45', 0, 1),
-(2, 1, 'physiotherapie', 'D 12', '2017-09-29 02:01:19', 0, 0);
+INSERT INTO `termine` (`id`, `pid`, `activity`, `location`, `timestamp`, `old`) VALUES
+(1, 1, 'Ultraschall', 'C 312', '2017-09-29 02:01:17', 0),
+(2, 1, 'physiotherapie', 'D 12', '2017-09-29 02:01:19', 0);
 
 -- --------------------------------------------------------
 
@@ -174,7 +173,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT für Tabelle `patient_info`
 --
 ALTER TABLE `patient_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT für Tabelle `termine`

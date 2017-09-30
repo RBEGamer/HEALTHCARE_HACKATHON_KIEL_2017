@@ -60,7 +60,7 @@ break;
 }
 
 if($pid < 0){
-  echo "<tr><td><br></td><td><img src='default.jpg' width='60%'></td></tr>";
+  echo "<tr><td><br></td><td><img src='images/default.jpg' width='60%'></td></tr>";
   echo "<tr><td><br></td></td><br><td><br><td></tr>";
   echo "<tr><td><br></td><td></td><td><b>Name:<td>no data<td></tr>";
   echo "<tr><td><br></td><td><b>Vorname:<td>no data<td></tr>";
@@ -80,7 +80,7 @@ if($pid < 0){
 
 <?php
 include 'db.php';
- $pid  = 1;
+ $pid  = 0;
 $fetchinfo_dev1 = mysqli_query($mysqli,"SELECT * FROM `patient_info` WHERE `shows_on_screen`='1' LIMIT 1");
 while($row_dev1 = mysqli_fetch_array($fetchinfo_dev1)) {
    $pid = $row_dev1['id'];

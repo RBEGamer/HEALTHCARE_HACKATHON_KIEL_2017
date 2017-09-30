@@ -13,6 +13,21 @@ $fetchinfo_dev = mysqli_query($mysqli,"SELECT * FROM `menu` WHERE `day` = '".$cu
 while($row_dev = mysqli_fetch_array($fetchinfo_dev)) {
 
 if(isset($_GET['pid'])){
+//FIRST CHECK IF AN OPERATION IS ON THE NEXT day
+$termin_info_qu = mysqli_query($mysqli,"SELECT * FROM `termine` WHERE `pid` = '".$_GET['pid']."' AND `reduced_eat` = '1'");
+while($row_dev_termin = mysqli_fetch_array($termin_info_qu)) {
+  $time =explode(' ',$row_dev_termin['timestamp']); //time[0]->datum
+  $time_original = strtotime($time[0]); //to timestamp
+  $time_add      = $time_original - (3600*24); //add one day
+  $new_date      = date("Y-m-d", $time_add);
+  //check if same
+  if($new_date == date("Y-m-d")){
+    echo "Heute kannst du leider keine Menus waehlen, da du am naechsten Tag eine Operation hast. Bitte wende dich an das Klinikpersonal.";
+    exit();
+  }
+}
+
+
   //get user allergene
   //ans split it into array
 $allginfo = mysqli_query($mysqli,"SELECT * FROM `patient_info` WHERE `id` = '".$_GET['pid']."' LIMIT 1");
