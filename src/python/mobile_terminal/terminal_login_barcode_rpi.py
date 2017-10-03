@@ -8,14 +8,28 @@ import requests
 import os
 import sys
 import select
-
+import time
+import serial
 
 continue_reading = True
 
 patientennotiz_server = 'http://18.194.182.2/patientennotiz'
 terminal_uuid = "1137"
+
+
+ser = serial.Serial(
+    port='/dev/tty1', ################# SERIAL BARCODE SCANNER ############
+    baudrate=9600,        # change to 9600 baud see script.ino
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS
+)
+ser.isOpen()
+
+
 # Capture SIGINT for cleanup when the script is aborted
 def clean_up(signal, frame):
+    ser.close()
     global continue_reading
     print "Ctrl+C captured, ending read."
     continue_reading = False
@@ -26,7 +40,7 @@ def clean_up(signal, frame):
 # Hook the SIGINT
 signal.signal(signal.SIGINT, clean_up)
 
-
+line = []
 MIFAREReader = MFRC522.MFRC522()
 comb_uid = ''
 stdin_fd = sys.stdin.fileno()
@@ -62,22 +76,17 @@ while continue_reading:
                     print "login failed"
                     comb_uid = ''
 
-    sys.stdout.write("Scan barcode: ")
-    sys.stdout.flush()
-    r_list = [stdin_fd]
-    w_list = list()
-    x_list = list()
-    r_list, w_list, x_list = select.select(r_list, w_list, x_list)
-    if stdin_fd in r_list:
-        result = os.read(stdin_fd, 1024)
-        result = result.rstrip()
-        result = [line.rstrip() for line in result.split('\n')]
-        for line in result:
-            if int(line) > 0  and line.isdigit():
-                print "Barcode scanned: %s" % line
-                r = requests.get(patientennotiz_server +  "/login_patient_terminal.php?termid=" + terminal_uuid + "&empid=" + comb_uid +"&bcdata="+line)
-                if r.status_code == 200:
-                    print r.text
-                else:
-                    print "login patient failed"
+
+
+
+    for c in ser.read():
+        line.append(c)
+        if c == '\n':
+            print("Line: " + line)
+            r = requests.get(patientennotiz_server +  "/login_patient_terminal.php?termid=" + terminal_uuid + "&empid=" + comb_uid +"&bcdata="+line)
+            if r.status_code == 200:
+                print r.text
+            else:
+                print "login patient failed"
+            line = []
 
