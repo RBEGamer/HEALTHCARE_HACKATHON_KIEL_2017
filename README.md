@@ -1,6 +1,6 @@
 HealthhackKiel > [home](https://git.ng.bluemix.net/bluehc/Healthcare-Hackathon-Kiel2017/wikis/home)
 
-# I) Patientennotiz - Raum E7
+# I) Patientennotiz - Raum E7 - 2nd price
 
 ## Teammitglieder
 
