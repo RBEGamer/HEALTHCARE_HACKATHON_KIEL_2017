@@ -61,14 +61,13 @@ Weiterentwicklung der Idee, Anstreben und Finanzieren eines Pilotprojektes zum B
 Weitere Anwendungsgebiete kontaktloser Pulsdiagnostik für Infektionsfrüherkennungen z.B. im Flughafen
 
 ## Präsentation / Video / Live
-* [unsere coole Präsi](http://web.de)
-* [unser Video](http://web.de)
-* [unsere Application](http://abc.eu-de.bluemix.net)
+* [unser Video](https://www.dropbox.com/s/9rsnlpo7iwjyhxl/patientennotiz_prozessablauf.mp4?dl=0)
+
 
 ## Technologie (Was steckt in der Lösung)
-* IBM Bluemix (PHP, MYSQL, REDNODE)
+* IBM Bluemix (REDNODE,manages the Alexa Response and calls the backend)
 * Amazon Alexa Skill Kit
-* Amazon Aws
+* Amazon Aws (php backend and Database hosting)
 * HCS
 * Brother Badge Drucker
 
